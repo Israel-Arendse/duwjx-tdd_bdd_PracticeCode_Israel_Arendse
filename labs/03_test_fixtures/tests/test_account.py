@@ -13,11 +13,13 @@ class TestAccountModel(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        """ Connect and load data needed by tests """
+        """Connect and load data needed by tests"""
+        db.create_all() # make our SQAlchemy tables
 
     @classmethod
     def tearDownClass(cls):
         """Disconnect from database"""
+        db.session.close() # close the database session
 
     def setUp(self):
         """Truncate the tables"""
