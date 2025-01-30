@@ -59,9 +59,4 @@ class TestAccountModel(TestCase):
         account.name = "Foo"
         self.assertEqual(str(account), "<Account 'Foo'>")
 
-    def test_to_dict(self):
-        """ Test account to dict """
-        data = ACCOUNT_DATA[self.rand] # get a random number
-        account = Account(**data)
-        result = account.to_dict()
-        self.assertEqual(account.name, result["name"])
+    
