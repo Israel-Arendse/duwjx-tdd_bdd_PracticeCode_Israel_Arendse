@@ -34,3 +34,9 @@ class TestAccountModel(TestCase):
     #  T E S T   C A S E S
     ######################################################################
 
+    def test_create_an_account(self):
+        """ Test create a single Account """
+        data = ACCOUNT_DATA[0] # get the first account
+        account = Account(**data)
+        account.create()
+        self.assertEqual(len(Account.all()), 1)
