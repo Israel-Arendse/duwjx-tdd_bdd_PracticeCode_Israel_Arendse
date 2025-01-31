@@ -71,7 +71,7 @@ class TestAccountModel(TestCase):
 
     def test_from_dict(self):
         """ Test account from dict """
-        data = ACCOUNT_DATA[self.rand] # get a random account
+        data = AccountFactory().to_dict()
         account = Account()
         account.from_dict(data)
         self.assertEqual(account.name, data["name"])
