@@ -49,8 +49,7 @@ class TestAccountModel(TestCase):
 
     def test_create_an_account(self):
         """ Test Account creation using known data """
-        data = ACCOUNT_DATA[self.rand] # get a random account
-        account = Account(**data)
+        account = AccountFactory()
         account.create()
         self.assertEqual(len(Account.all()), 1)
 
