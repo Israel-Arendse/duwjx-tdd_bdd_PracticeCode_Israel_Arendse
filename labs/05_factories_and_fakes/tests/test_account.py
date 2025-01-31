@@ -1,14 +1,11 @@
 """
 Test Cases TestAccountModel
 """
-import json
-from random import randrange
 from unittest import TestCase
 from models import db
 from models.account import Account, DataValidationError
 from factories import AccountFactory
 
-ACCOUNT_DATA = {}
 
 class TestAccountModel(TestCase):
     """Test Account Model"""
@@ -17,10 +14,7 @@ class TestAccountModel(TestCase):
     def setUpClass(cls):
         """ Load data needed by tests """
         db.create_all()  # make our sqlalchemy tables
-        global ACCOUNT_DATA
-        with open('tests/fixtures/account_data.json') as json_data:
-            ACCOUNT_DATA = json.load(json_data)
-
+       
     @classmethod
     def tearDownClass(cls):
         """Disconnext from database"""
@@ -28,7 +22,6 @@ class TestAccountModel(TestCase):
 
     def setUp(self):
         """Truncate the tables"""
-        self.rand = randrange(0, len(ACCOUNT_DATA))
         db.session.query(Account).delete()
         db.session.commit()
 
