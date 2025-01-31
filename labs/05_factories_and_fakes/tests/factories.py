@@ -12,7 +12,7 @@ import factory
 from datetime import date
 from factory.fuzzy import FuzzyChoice, FuzzyDate
 from models.account import Account
-from factories import AccountFactory
+
 
 class AccountFactory(factory.Factory):
     """ Creates fake Accounts """
