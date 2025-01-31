@@ -61,8 +61,7 @@ class TestAccountModel(TestCase):
 
     def test_to_dict(self):
         """ Test account to dict """
-        data = ACCOUNT_DATA[self.rand] # get a random account
-        account = Account(**data)
+        account = AccountFactory()
         result = account.to_dict()
         self.assertEqual(account.name, result["name"])
         self.assertEqual(account.email, result["email"])
