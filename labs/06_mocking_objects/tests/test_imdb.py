@@ -24,3 +24,12 @@ class TestIMDbDatabase(TestCase):
     #  T E S T   C A S E S
     ######################################################################
 
+    # Testcase for search by title
+    def test_search_by_title(self):
+        """Test searching by title"""
+        imdb = IMDb("k_12345678")
+        results = imdb.search_titles("Bambi")
+        self.assertIsNotNone(results)
+        self.assertIsNotNone(results["errorMessage"])
+        self.assertIsNotNone(results["results"])
+        self.assertEqual(results["results"][0]["id"], "tt1375666")
