@@ -61,3 +61,13 @@ class TestIMDbDatabase(TestCase):
         results = imdb.search_titles("Bambi")
         self.assertIsNotNone(results)
         self.assertEqual(results["errorMessage"], "Invalid API Key")
+
+
+    def test_movie_ratings(self):
+        """Test movie Ratings"""
+        imdb = IMDb("k_12345678")
+        results = imdb.movie_ratings("tt1375666")
+        self.assertIsNotNone(results)
+        self.assertEqual(results["title"], "Bambi")
+        self.assertEqual(results["filmAffinity"], 3)
+        self.assertEqual(results["rottenTomatoes"], 5)
