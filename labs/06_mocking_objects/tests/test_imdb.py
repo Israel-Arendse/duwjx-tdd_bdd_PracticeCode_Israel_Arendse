@@ -55,7 +55,7 @@ class TestIMDbDatabase(TestCase):
         imdb_mock.return_value = Mock(
             spec=Response,
             status_code=200,
-            json=Mock(return_value=IMDB_DATA[""])
+            json=Mock(return_value=IMDB_DATA["INVALID_API"])
         )
         imdb = IMDb("bad-key")
         results = imdb.search_titles("Bambi")
