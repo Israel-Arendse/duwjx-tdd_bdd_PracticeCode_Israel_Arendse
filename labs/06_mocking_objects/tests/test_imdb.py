@@ -47,8 +47,16 @@ class TestIMDbDatabase(TestCase):
         results = imdb.search_titles("Bambi")
         self.assertEqual(results, {})
 
-    def test_search_by_title_failed(self):
+    # Testcase: 'search_by_title_failed'
+    # Mock: 200, INVALID_API
+    @patch('models.imdb.requests.get')
+    def test_search_by_title_failed(self, imdb_mock):
         """Test searching by title failed"""
+        imdb_mock.return_value = Mock(
+            spec=Response,
+            status_code=200,
+            json=Mock(return_value=IMDB_DATA[""])
+        )
         imdb = IMDb("bad-key")
         results = imdb.search_titles("Bambi")
         self.assertIsNotNone(results)
