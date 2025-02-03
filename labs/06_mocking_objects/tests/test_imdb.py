@@ -38,8 +38,8 @@ class TestIMDbDatabase(TestCase):
         self.assertEqual(results["results"][0]["id"], "tt1375666")
 
     # Testcase for search_with_no_results
-    # Mock: 404 status code f
-    @patch('models.imdb.request.get')
+    # Mock: 404 status code
+    @patch('models.imdb.requests.get')
     def test_search_with_no_results(self, imdb_mock):
         """Test searching with no results"""
         imdb_mock.return_value = Mock(status_code=404)
