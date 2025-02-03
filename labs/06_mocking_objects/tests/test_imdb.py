@@ -62,9 +62,16 @@ class TestIMDbDatabase(TestCase):
         self.assertIsNotNone(results)
         self.assertEqual(results["errorMessage"], "Invalid API Key")
 
-
-    def test_movie_ratings(self):
+    # Testcase: 'test_movie_ratings'
+    # Mock: 200, GOOD_RATING
+    @patch('models.imdb.requests.get')
+    def test_movie_ratings(self, imdb_mock):
         """Test movie Ratings"""
+        imdb_mock.return_value = Mock(
+            spec=Response,
+            status_code=200,
+            json=Mock(return_value=IMDB_DATA["GOOD_RATING"])
+        )
         imdb = IMDb("k_12345678")
         results = imdb.movie_ratings("tt1375666")
         self.assertIsNotNone(results)
