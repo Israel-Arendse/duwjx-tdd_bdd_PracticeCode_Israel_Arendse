@@ -36,3 +36,10 @@ class TestIMDbDatabase(TestCase):
         self.assertIsNone(results["errorMessage"])
         self.assertIsNotNone(results["results"])
         self.assertEqual(results["results"][0]["id"], "tt1375666")
+
+    # Testcase for search_with_no_results
+    def test_search_with_no_results(self):
+        """Test searching with no results"""
+        imdb = IMDb("k_12345678")
+        results = imdb.search_titles("Bambi")
+        self.assertEqual(results, {})
