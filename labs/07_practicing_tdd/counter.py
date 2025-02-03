@@ -25,5 +25,5 @@ def update_counter(name)
     global COUNTERS
     COUNTERS[name] += 1
 
-    app.logger.info(f"Counter: {name} is now [COUNTERs[name]]")
+    app.logger.info(f"Counter: {name} is now [COUNTERS[name]]")
     return { name: COUNTERS[name]}, status.HTTP_200_OK
