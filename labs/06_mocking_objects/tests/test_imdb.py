@@ -24,7 +24,7 @@ class TestIMDbDatabase(TestCase):
     #  T E S T   C A S E S
     ######################################################################
 
-    # Testcase for search by title
+    # Testcase: 'search_by_title'
     # Mock: Bypass search_titles, GOOD_SEARCH
     @patch('test_imdb.IMDb.search_titles')
     def test_search_by_title(self, imdb_mock):
@@ -37,7 +37,7 @@ class TestIMDbDatabase(TestCase):
         self.assertIsNotNone(results["results"])
         self.assertEqual(results["results"][0]["id"], "tt1375666")
 
-    # Testcase for search_with_no_results
+    # Testcase: 'search_with_no_results'
     # Mock: 404 status code
     @patch('models.imdb.requests.get')
     def test_search_with_no_results(self, imdb_mock):
