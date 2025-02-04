@@ -37,3 +37,22 @@ class CounterTest(TestCase):
         self.assertEqual(result.status_code, status.HTTP_200_OK)
         data = result.get_json()
         self.assertEqual(data["baz"], baseline + 1)
+
+       def test_counter_does_not_exist(self):
+        """It should return an error if the counter does not exist"""
+        # Initial request to check if the counter exists
+        result = self.client.get("/counters/piece")
+        self.assertEqual(result.status_code, status.HTTP_404_NOT_FOUND)
+        data = result.get_json()
+        self.assertIn("error", data)
+
+        # Create the counter
+        result = self.client.post("/counters/piece")
+        self.assertEqual(result.status_code, status.HTTP_201_CREATED)
+        data = result.get_json()
+
+        # Verify that the counter now exists
+        result = self.client.get("/counters/piece")
+        self.assertEqual(result.status_code, status.HTTP_200_OK)
+        data = result.get_json()
+        self.assertIn("piece", data)
