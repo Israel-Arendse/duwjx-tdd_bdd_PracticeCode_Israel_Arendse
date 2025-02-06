@@ -10,3 +10,12 @@ Background:
         | Fido    | dog      | True      |
         | Kitty   | cat      | True      |
         | Leo     | lion     | False     |
+
+Scenario: Search for dogs
+    Given I am on the "Home Page"
+    When I set the "Category" to "dog"
+    And I click the "Search" button
+    THen I should see the message "Success"
+    And I should see "Fido" in the results
+    But I should not see "Kitty" in the results
+    And I should not see "Leo" in the results
