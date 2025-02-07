@@ -23,7 +23,7 @@ def step_impl(context):
         assert response.status_code == 204
     
     #  Load the database with new pats
-    for now in context.table:
+    for row in context.table:
         payload = {
             "name": row['name'],
             "category": row['category'],
