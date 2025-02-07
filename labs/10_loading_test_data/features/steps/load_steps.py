@@ -21,3 +21,15 @@ def step_impl(context):
     for pet in response.json():
         response = requests.delete(f"{context.base_url}/pets/{pet['id']}")
         assert response.status_code == 204
+    
+    #  Load the database with new pats
+    for now in context.table:
+        payload = {
+            "name": row['name'],
+            "category": row['category'],
+            "available": row['available'] in ['True', 'true', '1'],
+            "gender": row['gender'],
+            "birthday": row['birthday'],
+        }
+        response = requests.post(f"{context.base_url}/pets", json=payload)
+        assert response.status_code == 201
