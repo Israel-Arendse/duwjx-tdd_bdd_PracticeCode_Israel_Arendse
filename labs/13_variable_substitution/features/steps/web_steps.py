@@ -37,10 +37,10 @@ def step_impl(context, search_text):
     element = context.driver.find_element(By.ID, 'search_results')
     assert search_text in element.text
 
-@then('I should not see "Kitty" in the results')
-def step_impl(context):
+@then('I should not see "{search_text}" in the results')
+def step_impl(context, search_text):
     element = context.driver.find_element(By.ID, 'search_results')
-    assert "Kitty" not in element.text
+    assert sear not in element.text
 
 @then('I should not see "Leo" in the results')
 def step_impl(context):
